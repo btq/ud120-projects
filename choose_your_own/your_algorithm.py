@@ -30,6 +30,16 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
+print "Number of features:",len(features_train[0])
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import AdaBoostClassifier
+base = DecisionTreeClassifier(min_samples_split=10)
+clf = AdaBoostClassifier(base,n_estimators=100)
+clf.fit(features_train,labels_train)
+pred = clf.predict(features_test)
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(labels_test,pred)
+print "Accuracy=",acc
 
 
 

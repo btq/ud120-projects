@@ -32,12 +32,23 @@ features_test  = vectorizer.transform(features_test).toarray()
 ### a classic way to overfit is to use a small number
 ### of data points and a large number of features;
 ### train on only 150 events to put ourselves in this regime
-features_train = features_train[:150].toarray()
+features_train = features_train[:150]
 labels_train   = labels_train[:150]
 
 
 
 ### your code goes here
-
-
-
+from sklearn import tree
+from sklearn.metrics import accuracy_score
+clf = tree.DecisionTreeClassifier()
+#clf = tree.DecisionTreeClassifier(min_samples_split=40)
+clf.fit(features_train,labels_train)
+pred = clf.predict(features_test)
+acc = accuracy_score(labels_test,pred)
+print("Accuracy:",acc)
+for x in range(len(clf.feature_importances_)):
+	if clf.feature_importances_[x] > .2:
+		print x, clf.feature_importances_[x], vectorizer.get_feature_names()[x]
+#print vectorizer.get_feature_names()[33614]
+#print max(clf.feature_importances_)
+#print numpy.where(max(clf.feature_importances_),clf.feature_importances_)

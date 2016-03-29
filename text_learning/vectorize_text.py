@@ -51,12 +51,12 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         stemd_email = parseOutText(email)
         ### use str.replace() to remove any instances of the words
         ### ["sara", "shackleton", "chris", "germani"]
-        for sig in ["sara", "shackleton", "chris", "germani"]:
+        for sig in ["sara", "shackleton", "chris", "germani", "sshacklensf","cgermannsf"]:
             stemd_email = stemd_email.replace(sig,"") 
         ### append the text to word_data
         word_data.append(stemd_email)
         ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
-        from_data.append(name=='')
+        from_data.append(name=='chris')
 
         email.close()
 
